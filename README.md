@@ -1,92 +1,338 @@
 # Task Manager Application
 
-A modern, responsive, full-stack Task Manager application built with React, Tailwind CSS, Node.js, Express, and SQLite.
+A modern, responsive full-stack Task Manager application built with React, Tailwind CSS, Node.js, Express.js, JWT Authentication, and SQLite. The application allows users to register, log in securely, and manage tasks using a Kanban-style board with drag-and-drop functionality.
+
+---
+
+## Live Demo
+
+### Frontend Application
+
+https://task-manager-psi-eosin-62.vercel.app
+
+### Backend API
+
+https://task-manager-api-i7wc.onrender.com
+
+### GitHub Repository
+
+https://github.com/shaikuzeb72/task-manager
+
+---
 
 ## Features
 
-- **Authentication:** JWT-based user registration and login with bcrypt password hashing.
-- **Task Management:** Create, read, update, and delete (CRUD) tasks.
-- **Kanban Board:** Organize tasks into 'Todo', 'In Progress', and 'Done' columns.
-- **Drag & Drop:** Intuitively move tasks between columns using drag-and-drop.
-- **Responsive UI:** Clean, professional interface optimized for mobile, tablet, and desktop devices.
-- **Security:** Protected routes ensuring users can only access their own tasks.
+### Authentication
 
-## Tech Stack
+* User Registration
+* User Login
+* User Logout
+* JWT-based Authentication
+* Password Hashing using bcrypt
+* Protected Routes
 
-- **Frontend:** React, Vite, Tailwind CSS, React Router, Lucide React (Icons), React Hot Toast, `@hello-pangea/dnd`
-- **Backend:** Node.js, Express.js
-- **Database:** SQLite (local `.db` file)
-- **Authentication:** JSON Web Tokens (JWT), bcrypt
+### Task Management
 
-## Prerequisites
+* Create Tasks
+* View Tasks
+* Update Tasks
+* Delete Tasks
+* Drag-and-Drop Task Movement
+* Task Status Management
 
-- Node.js (v16 or higher)
-- npm or yarn
+### Kanban Board
 
-## Installation Steps
+Tasks are organized into three stages:
 
-1. **Clone or Download the Repository:**
-   Navigate to the project root directory (`task-manager`).
+* Todo
+* In Progress
+* Done
 
-2. **Backend Setup:**
-   ```bash
-   cd backend
-   npm install
-   ```
+### User Experience
 
-3. **Frontend Setup:**
-   ```bash
-   cd frontend
-   npm install
-   ```
+* Responsive Design
+* Mobile Friendly
+* Tablet Friendly
+* Desktop Friendly
+* Modern User Interface
+* Toast Notifications
+* Loading States
+* Error Handling
 
-## Environment Variables
+### Security
 
-In the `backend` directory, create a `.env` file (one is already provided) with the following content:
+* JWT Authentication
+* Password Encryption
+* User-specific Task Access
+* Protected Backend Routes
+
+---
+
+## Technology Stack
+
+### Frontend
+
+* React.js
+* Vite
+* Tailwind CSS
+* React Router DOM
+* Axios
+* React Hot Toast
+* Lucide React Icons
+* @hello-pangea/dnd
+
+### Backend
+
+* Node.js
+* Express.js
+
+### Database
+
+* SQLite
+
+### Authentication
+
+* JSON Web Tokens (JWT)
+* bcrypt
+
+### Deployment
+
+* Frontend: Vercel
+* Backend: Render
+
+---
+
+## Project Structure
+
+task-manager/
+
+├── frontend/
+
+│   ├── src/
+
+│   ├── public/
+
+│   └── package.json
+
+│
+
+├── backend/
+
+│   ├── controllers/
+
+│   ├── middleware/
+
+│   ├── routes/
+
+│   ├── db.js
+
+│   ├── server.js
+
+│   └── package.json
+
+│
+
+└── README.md
+
+---
+
+## Installation
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/shaikuzeb72/task-manager.git
+
+cd task-manager
+```
+
+### Backend Setup
+
+```bash
+cd backend
+
+npm install
+```
+
+Create a `.env` file inside the backend directory:
 
 ```env
 PORT=5000
-JWT_SECRET=supersecretjwtkey_for_task_manager_app
+JWT_SECRET=your_secret_key_here
 ```
 
-*Note: In a production environment, ensure `JWT_SECRET` is a strong, unique string.*
+Start the backend server:
 
-## Run Commands
-
-To run the application locally, you need two terminal windows.
-
-**Terminal 1 (Backend):**
 ```bash
-cd backend
 npm run dev
-# Server will run on http://localhost:5000
 ```
-*Note: The SQLite database file (`database.sqlite`) will be created automatically in the backend directory on first run.*
 
-**Terminal 2 (Frontend):**
+The SQLite database file will be created automatically on first run.
+
+---
+
+### Frontend Setup
+
+Open a new terminal:
+
 ```bash
 cd frontend
-npm run dev
-# Client will run on http://localhost:5173
+
+npm install
 ```
+
+Start the frontend:
+
+```bash
+npm run dev
+```
+
+Frontend runs at:
+
+```text
+http://localhost:5173
+```
+
+Backend runs at:
+
+```text
+http://localhost:5000
+```
+
+---
+
+## API Endpoints
+
+### Authentication
+
+#### Register User
+
+```http
+POST /api/auth/register
+```
+
+#### Login User
+
+```http
+POST /api/auth/login
+```
+
+### Tasks
+
+#### Get All Tasks
+
+```http
+GET /api/tasks
+```
+
+#### Create Task
+
+```http
+POST /api/tasks
+```
+
+#### Update Task
+
+```http
+PUT /api/tasks/:id
+```
+
+#### Delete Task
+
+```http
+DELETE /api/tasks/:id
+```
+
+---
 
 ## Deployment Instructions
 
-### Backend (Render, Railway, or Heroku)
-1. Ensure your `package.json` has a `start` script: `"start": "node server.js"`.
-2. Push your code to a GitHub repository.
-3. Connect the repository to your hosting provider.
-4. Set the build command to `npm install` and the start command to `npm start`.
-5. Add the `JWT_SECRET` to the environment variables on the hosting platform.
-6. *Note on SQLite:* SQLite stores data in a local file. On ephemeral filesystems (like Render free tier or Heroku), this data will be lost on restart. For production, consider migrating to PostgreSQL, or use a host with persistent disks (like Railway with a volume).
+### Backend Deployment (Render)
 
-### Frontend (Vercel, Netlify, or Render)
-1. In the `frontend` directory, ensure the API URL in `src/context/AuthContext.jsx` and `src/pages/Dashboard.jsx` (if hardcoded) is updated to point to your deployed backend URL. You can use environment variables (e.g., `import.meta.env.VITE_API_URL`) to handle this cleanly.
-2. Push your code to GitHub.
-3. Connect the repository to Vercel/Netlify.
-4. Set the Root Directory to `frontend`.
-5. The build command will automatically be detected as `npm run build` and output directory as `dist`.
-6. Deploy the application.
+1. Push code to GitHub.
+2. Create a new Web Service on Render.
+3. Set Root Directory to:
+
+```text
+backend
+```
+
+4. Build Command:
+
+```text
+npm install
+```
+
+5. Start Command:
+
+```text
+npm start
+```
+
+6. Add Environment Variable:
+
+```text
+JWT_SECRET=your_secret_key_here
+```
+
+7. Deploy.
+
+---
+
+### Frontend Deployment (Vercel)
+
+1. Import the GitHub repository into Vercel.
+2. Set Root Directory to:
+
+```text
+frontend
+```
+
+3. Build Command:
+
+```text
+npm run build
+```
+
+4. Output Directory:
+
+```text
+dist
+```
+
+5. Deploy.
+
+---
+
+## Notes
+
+* SQLite is used for data storage.
+* Database tables are automatically created on first run.
+* Render free tier may put the backend to sleep after inactivity; the first request may take a few seconds to respond.
+* This project was developed as part of a Task Manager internship assignment.
+
+---
+
+## Future Improvements
+
+* User Profile Management
+* Task Priorities
+* Task Due Dates
+* Task Search and Filtering
+* Dark Mode
+* Email Notifications
+* PostgreSQL Migration for Production Use
+
+---
 
 ## License
+
 MIT License
+
+---
+
+## Author
+
+Shaik Uzeb
+
+Task Manager Internship Assignment Project
