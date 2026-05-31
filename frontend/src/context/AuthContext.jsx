@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   // Configure axios default headers
-  axios.defaults.baseURL = 'https://task-manager-api-i7wc.onrender.com';
+  axios.defaults.baseURL = 'https://task-manager-api-i7wc.onrender.com/api';
 
   useEffect(() => {
     if (token) {
